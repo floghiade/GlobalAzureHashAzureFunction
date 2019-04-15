@@ -1,0 +1,2 @@
+# GlobalAzureHashAzureFunction
+GlobalAzureHashAzureFunction

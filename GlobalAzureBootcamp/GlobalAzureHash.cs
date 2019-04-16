@@ -19,24 +19,24 @@ namespace GlobalAzureBootcamp
         {
             log.LogInformation("###### Functions called");
 
-            string toHash = req.Query["toHash"];
-            if(string.IsNullOrWhiteSpace(toHash))
+            string toAzure = req.Query["toAzure"];
+            if(string.IsNullOrWhiteSpace(toAzure))
             {
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 dynamic data = JsonConvert.DeserializeObject(requestBody);
-                toHash = data?.toHash;
+                toHash = data?.toAzure;
             }
 
-            if(string.IsNullOrWhiteSpace(toHash))
+            if(string.IsNullOrWhiteSpace(toAzure))
             {
                 log.LogError("###### No content to hash");
                 new BadRequestObjectResult("Please pass a name on the query string or in the request body");
             }
-            log.LogInformation($"###### toHash: '{toHash}'");
+            log.LogInformation($"###### toAzure: '{toAzure}'");
 
-            string hash = GetStringSha256Hash(toHash);
+            string hash = GetStringSha256Hash(toAzure);
 
-            string response = $"'{toHash}' - '{hash}'";
+            string response = $"'{toAzure}' - '{hash}'";
             log.LogInformation($"###### Response: {response}");
 
             return new OkObjectResult(response);
